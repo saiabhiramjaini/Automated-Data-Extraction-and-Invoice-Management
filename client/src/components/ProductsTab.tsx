@@ -36,12 +36,32 @@ export const ProductsTab = () => {
       <TableBody>
         {data.products.map((product: Product, index: number) => (
           <TableRow key={index}>
-            <TableCell>{product.name}</TableCell>
-            <TableCell>{product.quantity}</TableCell>
-            <TableCell>{product.unitPrice}</TableCell>
-            <TableCell>{product.tax}</TableCell>
-            <TableCell>{product.priceWithTax}</TableCell>
-            <TableCell className={product.discount === "NA" ? "text-red-600" : ""}>{product.discount}</TableCell>
+            <TableCell className={product.name === "NA" ? "text-red-600" : ""}>
+              {product.name}
+            </TableCell>
+            <TableCell
+              className={product.quantity === "NA" ? "text-red-600" : ""}
+            >
+              {product.quantity}
+            </TableCell>
+            <TableCell
+              className={product.unitPrice === "NA" ? "text-red-600" : ""}
+            >
+              {product.unitPrice}
+            </TableCell>
+            <TableCell className={product.tax === "NA" ? "text-red-600" : ""}>
+              {product.tax}
+            </TableCell>
+            <TableCell
+              className={product.priceWithTax === "NA" ? "text-red-600" : ""}
+            >
+              {product.priceWithTax}
+            </TableCell>
+            <TableCell
+              className={product.discount === "NA" ? "text-red-600" : ""}
+            >
+              {product.discount}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

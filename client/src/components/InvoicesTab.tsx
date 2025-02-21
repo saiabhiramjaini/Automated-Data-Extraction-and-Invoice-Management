@@ -16,9 +16,9 @@ import { UploadAnimation } from "./animations/UploadAnimation";
 export const InvoicesTab = () => {
   const { isLoading, data, isError } = useSelector((state: any) => state.data);
 
-  if (isError) return <ErrorAnimation/>
-  if (isLoading) return <LoadingAnimation/>
-  if (!data || !data.customers) return <UploadAnimation/>
+  if (isError) return <ErrorAnimation />;
+  if (isLoading) return <LoadingAnimation />;
+  if (!data || !data.customers) return <UploadAnimation />;
 
   return (
     <Table>
@@ -36,12 +36,34 @@ export const InvoicesTab = () => {
       <TableBody>
         {data.invoices.map((invoice: Invoice, index: number) => (
           <TableRow key={index}>
-            <TableCell>{invoice.serialNumber}</TableCell>
-            <TableCell>{invoice.customerName}</TableCell>
-            <TableCell>{invoice.productName}</TableCell>
-            <TableCell>{invoice.quantity}</TableCell>
-            <TableCell>{invoice.totalAmount}</TableCell>
-            <TableCell>{invoice.date}</TableCell>
+            <TableCell
+              className={invoice.serialNumber === "NA" ? "text-red-600" : ""}
+            >
+              {invoice.serialNumber}
+            </TableCell>
+            <TableCell
+              className={invoice.customerName === "NA" ? "text-red-600" : ""}
+            >
+              {invoice.customerName}
+            </TableCell>
+            <TableCell
+              className={invoice.productName === "NA" ? "text-red-600" : ""}
+            >
+              {invoice.productName}
+            </TableCell>
+            <TableCell
+              className={invoice.quantity === "NA" ? "text-red-600" : ""}
+            >
+              {invoice.quantity}
+            </TableCell>
+            <TableCell
+              className={invoice.totalAmount === "NA" ? "text-red-600" : ""}
+            >
+              {invoice.totalAmount}
+            </TableCell>
+            <TableCell className={invoice.date === "NA" ? "text-red-600" : ""}>
+              {invoice.date}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

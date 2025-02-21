@@ -16,9 +16,9 @@ import { UploadAnimation } from "./animations/UploadAnimation";
 export const CustomersTab = () => {
   const { isLoading, data, isError } = useSelector((state: any) => state.data);
 
-  if (isError) return <ErrorAnimation/>
-  if (isLoading) return <LoadingAnimation/>
-  if (!data || !data.customers) return <UploadAnimation/>
+  if (isError) return <ErrorAnimation />;
+  if (isLoading) return <LoadingAnimation />;
+  if (!data || !data.customers) return <UploadAnimation />;
 
   return (
     <Table>
@@ -33,9 +33,23 @@ export const CustomersTab = () => {
       <TableBody>
         {data.customers.map((customer: Customer, index: number) => (
           <TableRow key={index}>
-            <TableCell>{customer.customerName}</TableCell>
-            <TableCell>{customer.phoneNumber}</TableCell>
-            <TableCell>{customer.totalPurchaseAmount}</TableCell>
+            <TableCell
+              className={customer.customerName === "NA" ? "text-red-600" : ""}
+            >
+              {customer.customerName}
+            </TableCell>
+            <TableCell
+              className={customer.phoneNumber === "NA" ? "text-red-600" : ""}
+            >
+              {customer.phoneNumber}
+            </TableCell>
+            <TableCell
+              className={
+                customer.totalPurchaseAmount === "NA" ? "text-red-600" : ""
+              }
+            >
+              {customer.totalPurchaseAmount}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

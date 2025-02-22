@@ -108,6 +108,7 @@ def receive_file():
       }
 
       **Process this document and return the structured JSON output:**
+      **NOTE: Please dont return me in markdown format i need it in JSON format without ```json**
       """
 
         model = genai.GenerativeModel("gemini-1.5-flash")
@@ -134,7 +135,7 @@ def receive_file():
             file_data_text = base64.b64decode(file_data_base64).decode("utf-8")
             df = pd.read_csv(io.StringIO(file_data_text))
 
-            #print("CSV converted to DataFrame")
+            # print("CSV converted to DataFrame")
 
             response = model.generate_content(
                 [
@@ -163,8 +164,10 @@ def receive_file():
 
         else:
             return jsonify({"message": "Unsupported file format"}), 400
-
+        
+        # print(response)
         extracted_data = response.text.strip()
+        # print(extracted_data)
 
         if extracted_data.startswith("```json"):
             extracted_data = extracted_data[7:] 
@@ -172,6 +175,7 @@ def receive_file():
             extracted_data = extracted_data[:-3]  
 
         json_data = json.loads(extracted_data)
+        # print(json_data)
 
         return jsonify(json_data), 200
 

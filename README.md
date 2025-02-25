@@ -171,7 +171,7 @@ The backend is containerized and deployed using **Docker** on an AWS EC2 instanc
 
 #### 1. Clone the Repository
 ```sh
-git clone https://github.com/saiabhiramjaini/Automated-Data-Extraction-and-Invoice-Management.git
+git clone https://github.com/saiabhiramjaini/Automated-Data-Extraction-and-Invoice-Management.git 
 cd Automated-Data-Extraction-and-Invoice-Management
 ```
 
